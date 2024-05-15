@@ -1,0 +1,22 @@
+#http:// {
+#    redir https://{host}{uri}
+#}
+
+localhost {
+    root * /wahlrechner
+
+    handle_path /static/* {
+        root * /wahlrechner/static
+        file_server
+    }
+
+    handle_path /media/* {
+        root * /wahlrechner/media
+        file_server
+    }
+
+    reverse_proxy wahlrechner:8000
+}
+
+#reverse_proxy /team1/* wr-team1:8000
+#reverse_proxy /team2/* wr-team2:8000
