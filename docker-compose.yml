@@ -31,17 +31,27 @@ services:
         volumes:
             - ./data/mysql:/var/lib/mysql
 
-    web:
-        container_name: web
-        build:
-            context: web/apache
-        restart: always
+    caddy:
+        container_name: caddy
+        image: caddy:2.8
+        restart: unless-stopped
         ports:
-            - "80:80"
-            - "443:443"
+        - "80:80"
+        - "443:443"
+        - "443:443/udp"
         volumes:
-            - ./data/static:/wahlrechner/static
-            - ./data/media:/wahlrechner/media
-            - ./web/cert:/wahlrechner/cert
-            - ./data/logs/apache:/usr/local/apache2/logs
-            - /etc/letsencrypt:/etc/letsencrypt
+        - ./web/caddy/Caddyfile:/etc/caddy/Caddyfile
+        - ./data/static:/wahlrechner/static
+        - ./data/media:/wahlrechner/media
+        - caddy_data:/data
+        - caddy_config:/config
+        env_file:
+            - ./web/caddy/caddy.env
+        # volumes:
+        #     - ./web/cert:/wahlrechner/cert
+        #     - ./data/logs/apache:/usr/local/apache2/logs
+        #     - /etc/letsencrypt:/etc/letsencrypt
+
+volumes:
+    caddy_data:
+    caddy_config:
