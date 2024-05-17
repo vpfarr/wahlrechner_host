@@ -3,3 +3,4 @@ data/*
 LICENSE
 .gitmodules
 config/config.env
+caddy.env
