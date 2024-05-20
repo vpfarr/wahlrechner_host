@@ -1,9 +1,7 @@
-#http:// {
-#    redir https://{host}{uri}
-#}
-
-{$DOMAIN} {
+{$DEV_DOMAIN} {
     root * /wahlrechner
+    header Content-Security-Policy: frame-ancestors *
+    header -X-Frame-Options
 
     handle_path /static/* {
         root * /wahlrechner/static
@@ -16,6 +14,10 @@
     }
 
     reverse_proxy wahlrechner:8000
+}
+
+{$FILEBROWSER_DOMAIN} {
+    reverse_proxy http://filebrowser:80
 }
 
 #reverse_proxy /team1/* wr-team1:8000

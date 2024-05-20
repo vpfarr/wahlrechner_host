@@ -8,6 +8,8 @@ services:
 #            context: web/wahlrechner
         command: bash -c 'docker/wait-for-it/wait-for-it.sh db:3306 -t 120 -- docker/startup-production.sh'
         restart: always
+        networks:
+            - wahlrechner_default
         volumes:
             - ./data/static:/code/assets/
             - ./data/media:/code/media/
@@ -24,6 +26,8 @@ services:
         container_name: db
         image: mariadb
         restart: always
+        networks:
+            - wahlrechner_default
         ports:
             - "3306:3306"
         env_file:
@@ -36,15 +40,18 @@ services:
         image: caddy:2.8
         restart: unless-stopped
         ports:
-        - "80:80"
-        - "443:443"
-        - "443:443/udp"
+            - "80:80"
+            - "443:443"
+            - "443:443/udp"
+        networks:
+            - wahlrechner_default
+            - caddy
         volumes:
-        - ./web/caddy/Caddyfile:/etc/caddy/Caddyfile
-        - ./data/static:/wahlrechner/static
-        - ./data/media:/wahlrechner/media
-        - caddy_data:/data
-        - caddy_config:/config
+            - ./web/caddy/Caddyfile:/etc/caddy/Caddyfile
+            - ./data/static:/wahlrechner/static
+            - ./data/media:/wahlrechner/media
+            - caddy_data:/data
+            - caddy_config:/config
         env_file:
             - ./web/caddy/caddy.env
         # volumes:
@@ -55,3 +62,8 @@ services:
 volumes:
     caddy_data:
     caddy_config:
+
+networks:
+    wahlrechner_default:
+    caddy:
+      name: caddy
