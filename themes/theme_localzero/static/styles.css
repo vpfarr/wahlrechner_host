@@ -1282,7 +1282,7 @@ body {
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, #FFC80C);
     --tw-gradient-to: #FFC80C;
     color: #011633;
-    font-family: DM Sans;
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
 }
 
 #logo {
