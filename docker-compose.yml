@@ -1,40 +1,5 @@
-version: "3"
-
 services:
-    wahlrechner:
-        container_name: wahlrechner
-        image: ghcr.io/wahlrechner/wahlrechner:latest
-#        build:
-#            context: web/wahlrechner
-        command: bash -c 'docker/wait-for-it/wait-for-it.sh db:3306 -t 120 -- docker/startup-production.sh'
-        restart: always
-        networks:
-            - wahlrechner_default
-        volumes:
-            - ./data/static:/code/assets/
-            - ./data/media:/code/media/
-            - ./data/logs/wahlrechner:/code/logs/
-            - ./data/migrations/wahlrechner:/code/wahlrechner/migrations
-            - ./themes:/code/themes
-            - ./data/stats:/code/wahlrechner/stats
-        env_file:
-            - ./config/config.env
-        depends_on:
-            - db
-
-    db:
-        container_name: db
-        image: mariadb
-        restart: always
-        networks:
-            - wahlrechner_default
-        ports:
-            - "3306:3306"
-        env_file:
-            - ./config/config.env
-        volumes:
-            - ./data/mysql:/var/lib/mysql
-
+    # Reverse proxy.
     caddy:
         container_name: caddy
         image: caddy:2.8
@@ -44,26 +9,100 @@ services:
             - "443:443"
             - "443:443/udp"
         networks:
-            - wahlrechner_default
             - caddy
+            - markdorf
+            - dev
         volumes:
-            - ./web/caddy/Caddyfile:/etc/caddy/Caddyfile
-            - ./data/static:/wahlrechner/static
-            - ./data/media:/wahlrechner/media
+            - ./caddy/Caddyfile:/etc/caddy/Caddyfile
             - caddy_data:/data
             - caddy_config:/config
+            - ./data/markdorf/static:/www/markdorf/static
+            - ./data/markdorf/media:/www/markdorf/media
+            - ./data/dev/static:/www/dev/static
+            - ./data/dev/media:/www/dev/media
         env_file:
-            - ./web/caddy/caddy.env
-        # volumes:
-        #     - ./web/cert:/wahlrechner/cert
-        #     - ./data/logs/apache:/usr/local/apache2/logs
-        #     - /etc/letsencrypt:/etc/letsencrypt
+            - ./caddy/caddy.env
+
+    # Team Markdorf
+    markdorf:
+        container_name: markdorf
+        #image: ghcr.io/wahlrechner/wahlrechner:latest
+        build:
+            context: ../wahlrechner
+        command: bash -c 'docker/wait-for-it/wait-for-it.sh db_markdorf:3306 -t 120 -- docker/startup-production.sh'
+        restart: always
+        networks:
+            - markdorf
+            - db_markdorf
+        volumes:
+            - ./data/markdorf/static:/code/assets/
+            - ./data/markdorf/media:/code/media/
+            - ./data/markdorf/logs/wahlrechner:/code/logs/
+            - ./data/markdorf/migrations/wahlrechner:/code/wahlrechner/migrations
+            - ./data/markdorf/stats:/code/wahlrechner/stats
+            - ./themes:/code/themes
+        env_file:
+            - ./config/config.env
+            - ./config/config_markdorf.env
+        depends_on:
+            - db_markdorf
+
+    db_markdorf:
+        container_name: db_markdorf
+        image: mariadb
+        restart: always
+        networks:
+            - db_markdorf
+        env_file:
+            - ./config/config.env
+            - ./config/config_markdorf.env
+        volumes:
+            - ./data/markdorf/mysql:/var/lib/mysql
+
+    # Dev Instance.
+    dev:
+        container_name: dev
+        #image: ghcr.io/wahlrechner/wahlrechner:latest
+        build:
+            context: ../wahlrechner
+        command: bash -c 'docker/wait-for-it/wait-for-it.sh db_dev:3306 -t 120 -- docker/startup-production.sh'
+        restart: always
+        networks:
+            - dev
+            - db_dev
+        volumes:
+            - ./data/dev/static:/code/assets/
+            - ./data/dev/media:/code/media/
+            - ./data/dev/logs/wahlrechner:/code/logs/
+            - ./data/dev/migrations/wahlrechner:/code/wahlrechner/migrations
+            - ./data/dev/stats:/code/wahlrechner/stats
+            - ./themes:/code/themes
+        env_file:
+            - ./config/config.env
+            - ./config/config_dev.env
+        depends_on:
+            - db_dev
+
+    db_dev:
+        container_name: db_dev
+        image: mariadb
+        restart: always
+        networks:
+            - db_dev
+        env_file:
+            - ./config/config.env
+            - ./config/config_dev.env
+        volumes:
+            - ./data/dev/mysql:/var/lib/mysql
 
 volumes:
     caddy_data:
     caddy_config:
 
 networks:
-    wahlrechner_default:
     caddy:
       name: caddy
+    db_markdorf:
+    db_dev:
+    markdorf:
+    dev:

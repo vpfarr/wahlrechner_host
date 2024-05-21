@@ -1,0 +1,39 @@
+{$INSTANCE_MARKDORF} {
+    root * /markdorf
+    header Content-Security-Policy: frame-ancestors *
+    header -X-Frame-Options
+
+    handle_path /static/* {
+        root * /www/markdorf/static
+        file_server
+    }
+
+    handle_path /media/* {
+        root * /www/markdorf/media
+        file_server
+    }
+
+    reverse_proxy markdorf:8000
+}
+
+{$INSTANCE_DEV} {
+    root * /dev
+    header Content-Security-Policy: frame-ancestors *
+    header -X-Frame-Options
+
+    handle_path /static/* {
+        root * /www/dev/static
+        file_server
+    }
+
+    handle_path /media/* {
+        root * /www/dev/media
+        file_server
+    }
+
+    reverse_proxy dev:8000
+}
+
+{$FILEBROWSER_URL} {
+    reverse_proxy http://filebrowser:80
+}
