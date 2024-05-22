@@ -1,5 +1,6 @@
 /data*
 /web/cert/
+config.env
 LICENSE
 .gitmodules
 caddy.env
