@@ -1,5 +1,7 @@
 /*! tailwindcss v3.0.24 | MIT License | https://tailwindcss.com*/*,
-/*! Carlos 123 */
+/*! Carlos 2024-05-23 10:15:00 */
+/*! Adapted for LocalZero Theme by Carlos, Valentin, Leon. */
+/*! path: https://filebrowser.klimaplan-markdorf.de/files/theme_localzero/static/styles.css */
 :after,
 :before {
  box-sizing:border-box;
@@ -15,7 +17,7 @@ html {
  -moz-tab-size:4;
  -o-tab-size:4;
  tab-size:4;
- font-family:ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,Noto Sans,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Color Emoji
+ font-family:FabrikatNormal;
 }
 body {
  margin:0;
@@ -611,7 +613,7 @@ p.text-gray-600 > span.text-gray-400 {
 }
 .text-green-500 {
  --tw-text-opacity:1;
- color:rgb(34 197 94/var(--tw-text-opacity))
+ color:#A3D869;
 }
 .text-red-500 {
  --tw-text-opacity:1;
@@ -1154,21 +1156,14 @@ body {
 }
 @font-face {
     font-family: 'FabrikatNormal';
-    /*! src: url('fonts/Open_Sans/OpenSans-BoldItalic.eot'); */
-    src: url('fonts/FabrikatNormal/FabrikatNormal-Regular.woff2') format('woff'),
-        /*! url('fonts/Open_Sans/OpenSans-BoldItalic.eot?#iefix') format('embedded-opentype'),
-         url('fonts/Open_Sans/OpenSans-BoldItalic.ttf') format('truetype'); */;
+    src: url('/static/fonts/FabrikatNormal/FabrikatNormal-Regular.woff2') format('woff');
     font-weight: 500;
     font-style: normal;
 }
 @font-face {
     font-family: 'FabrikatNormal';
-    /*! src: url('fonts/Open_Sans/OpenSans-BoldItalic.eot'); */
-    src: url('fonts/FabrikatNormal/FabrikatNormal-Bold.woff2') format('woff'),
-        /*! url('fonts/Open_Sans/OpenSans-BoldItalic.eot?#iefix') format('embedded-opentype'),
-         url('fonts/Open_Sans/OpenSans-BoldItalic.ttf') format('truetype'); */ ;
-
-    font-weight: 900;
+    src: url('/static/fonts/FabrikatNormal/FabrikatNormal-Bold.woff2') format('woff');
+    font-weight: 600;
     font-style: bold;
 }
 #logo { 

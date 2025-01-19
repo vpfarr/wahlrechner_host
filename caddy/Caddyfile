@@ -12,7 +12,6 @@
         file_server
     }
 
-    reverse_proxy dev:8000
-
     root * /www/dev
+    reverse_proxy dev:8000
 }
