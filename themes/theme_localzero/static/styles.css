@@ -1,7 +1,9 @@
+/* path/to/css */
+
 /*! tailwindcss v3.0.24 | MIT License | https://tailwindcss.com*/*,
 /*! Carlos 2024-05-23 10:15:00 */
+/*! Carlos 2025-01-23 00:30:00 */
 /*! Adapted for LocalZero Theme by Carlos, Valentin, Leon. */
-/*! path: https://filebrowser.klimaplan-markdorf.de/files/theme_localzero/static/styles.css */
 :after,
 :before {
  box-sizing:border-box;
@@ -587,6 +589,15 @@ video {
  --tw-text-opacity:1;
  color:rgb(163 163 163/var(--tw-text-opacity));
 }
+.icon-agree {
+    color: #A3D869;
+}
+.icon-neutral {
+    color: #00AED8;
+}
+.icon-disagree {
+    color: #01214c;
+}
 p.text-gray-600 > span.text-gray-400 {
  display: none !important;
 }
@@ -617,8 +628,9 @@ p.text-gray-600 > span.text-gray-400 {
 }
 .text-red-500 {
  --tw-text-opacity:1;
- color: rgb(0 20 50);
-}
+ /* color: rgb(0 20 50); */
+ color: #00AED8;
+ }
 .text-yellow-500 {
  --tw-text-opacity:1;
  color:rgb(255 200 10/var(--tw-text-opacity))
@@ -854,12 +866,13 @@ p.text-gray-600 > span.text-gray-400 {
  --tw-bg-opacity:1;
  background-color:#A3D869;
  --tw-ring-opacity:1;
- /*! --tw-ring-color:rgb(74 222 128/var(--tw-ring-opacity)) */
+ --tw-ring-color:transparent;
 }
 .btn-container .btn.btn-agree:focus,
 .btn-container .btn.btn-agree:hover {
  --tw-bg-opacity:1;
  background-color:#8acd41;
+ /* color: #FFC80C; */
 }
 @media (min-width:1024px) {
  .btn-container .btn.btn-agree {
@@ -870,7 +883,7 @@ p.text-gray-600 > span.text-gray-400 {
  --tw-bg-opacity:1;
  background-color:#00AED8;
  --tw-ring-opacity:1;
- /*! --tw-ring-color:rgb(163 163 163/var(--tw-ring-opacity)) */
+ --tw-ring-color:transparent;
 }
 .btn-container .btn.btn-neutral:focus,
 .btn-container .btn.btn-neutral:hover {
@@ -886,7 +899,7 @@ p.text-gray-600 > span.text-gray-400 {
  --tw-bg-opacity:1;
  background-color:#01214c;
  --tw-ring-opacity:1;
- /*! --tw-ring-color:rgb(248 113 113/var(--tw-ring-opacity)) */
+ --tw-ring-color:transparent;
 }
 .btn-container .btn.btn-disagree:focus,
 .btn-container .btn.btn-disagree:hover {
@@ -947,7 +960,7 @@ p.text-gray-600 > span.text-gray-400 {
 .btn-row .btn:focus,
 .btn-row .btn:hover {
  --tw-bg-opacity:1;
-color:white;
+ color: white;
 }
 .btn-row .btn:focus {
  outline:2px solid #0000;
@@ -996,6 +1009,11 @@ label.favbox.group {
 .favbox.group:hover > div.favbox {
  background-color: rgb(255 200 20) !important;
 }
+.reactionsign {
+	/* # color: red!important; */
+	transform: scale(1.4) !important;
+}
+
 label.favbox div.favbox {
  margin-right: .75rem;
  display:flex;
@@ -1005,7 +1023,7 @@ label.favbox div.favbox {
  align-items:center;
  justify-content:center;
  border-radius: 1.5rem;
- border-color: rgb(251 198 14);
+ border-color: #FFC80C;
  border-width: 4px !important;
  --tw-bg-opacity:1;
  background-color: transparent;
