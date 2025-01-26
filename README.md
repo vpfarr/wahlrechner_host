@@ -8,6 +8,10 @@ Setup:
 git clone <...>
 git submodule init # ggf. git init
 git submodule update # git submodule update --init --recursive # auf beiden Instanzen
+sudo groupadd docker
+sudo usermod -aG docker $USER
+newgrp docker
+docker run hello-world # Reboot if you still get an error # reboot
 docker-compose build
 docker-compose up -d
 ```
