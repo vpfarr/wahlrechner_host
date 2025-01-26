@@ -6,8 +6,8 @@ Benutzt das Image wahlrechner, welches die Django-App [Wahlrechner](https://gith
 Setup:
 ```
 git clone <...>
-git submodule init
-git submodule update
+git submodule init # ggf. git init
+git submodule update # git submodule update --init --recursive # auf beiden Instanzen
 docker-compose build
 docker-compose up -d
 ```
