@@ -1,6 +1,7 @@
 {$ROOT_DOMAIN} {
     header Content-Security-Policy: frame-ancestors *
     header -X-Frame-Options
+    header Strict-Transport-Security
 
     handle_path /static/* {
         root * /www/dev/static
