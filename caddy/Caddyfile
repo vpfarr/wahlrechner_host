@@ -4,7 +4,7 @@
     header Strict-Transport-Security max-age=31536000;
 
     # instance dev
-    route /dev/* {
+    route /dev* {
         handle_path /dev/static/* {
             root * /www/dev/static
             file_server
@@ -20,7 +20,7 @@
     }
 
     # instance markdorf
-    route /markdorf/* {
+    route /markdorf* {
         handle_path /markdorf/static/* {
             root * /www/markdorf/static
             file_server
