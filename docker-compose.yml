@@ -104,7 +104,9 @@ volumes:
 networks:
     caddy:
       name: caddy
-    db_markdorf:
+    # instance dev
     db_dev:
-    markdorf:
     dev:
+    # instance markdorf
+    db_markdorf:
+    markdorf:
