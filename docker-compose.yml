@@ -16,14 +16,16 @@ services:
             - ./caddy/Caddyfile:/etc/caddy/Caddyfile
             - caddy_data:/data
             - caddy_config:/config
+            # instance markdorf
             - ./data/markdorf/static:/www/markdorf/static
             - ./data/markdorf/media:/www/markdorf/media
+            # instance dev
             - ./data/dev/static:/www/dev/static
             - ./data/dev/media:/www/dev/media
         env_file:
             - ./caddy/caddy.env
 
-    # Team Markdorf
+    # instance markdorf
     markdorf:
         container_name: markdorf
         #image: ghcr.io/wahlrechner/wahlrechner:latest
@@ -59,7 +61,7 @@ services:
         volumes:
             - ./data/markdorf/mysql:/var/lib/mysql
 
-    # Dev Instance.
+    # instance markdorf
     dev:
         container_name: dev
         #image: ghcr.io/wahlrechner/wahlrechner:latest
