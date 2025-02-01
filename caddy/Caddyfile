@@ -34,4 +34,20 @@
         root * /www/markdorf
         reverse_proxy markdorf:8000
     }
+
+    # instance wk_000
+    route /wk_000* {
+        handle_path /wk_000/static/* {
+            root * /www/wk_000/static
+            file_server
+        }
+        
+        handle_path /wk_000/media/* {
+            root * /www/wk_000/media
+            file_server
+        }
+
+        root * /www/wk_000
+        reverse_proxy wk_000:8000
+    }
 }
