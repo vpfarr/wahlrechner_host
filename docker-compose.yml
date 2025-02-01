@@ -22,6 +22,9 @@ services:
             # instance dev
             - ./data/dev/static:/www/dev/static
             - ./data/dev/media:/www/dev/media
+            # instance wk_000
+            - ./data/wk_000/static:/www/wk_000/static
+            - ./data/wk_000/media:/www/wk_000/media
         env_file:
             - ./caddy/caddy.env
 
@@ -97,6 +100,42 @@ services:
         volumes:
             - ./data/dev/mysql:/var/lib/mysql
 
+    # instance wk_000
+    wk_000:
+        container_name: wk_000
+        #image: ghcr.io/wahlrechner/wahlrechner:latest
+        build:
+            context: ../wahlrechner
+        command: bash -c 'docker/wait-for-it/wait-for-it.sh db_000:3306 -t 120 -- docker/startup-production.sh'
+        restart: always
+        networks:
+            - wk_000
+            - db_000
+        volumes:
+            - ./data/wk_000/static:/code/assets/
+            - ./data/wk_000/media:/code/media/
+            - ./data/wk_000/logs/wahlrechner:/code/logs/
+            - ./data/wk_000/migrations/wahlrechner:/code/wahlrechner/migrations
+            - ./data/wk_000/stats:/code/wahlrechner/stats
+            - ./themes:/code/themes
+        env_file:
+            - ./config/config.env
+            - ./config/config_000.env
+        depends_on:
+            - db_000
+
+    db_000:
+        container_name: db_000
+        image: mariadb
+        restart: always
+        networks:
+            - db_000
+        env_file:
+            - ./config/config.env
+            - ./config/config_000.env
+        volumes:
+            - ./data/wk_000/mysql:/var/lib/mysql
+
 volumes:
     caddy_data:
     caddy_config:
@@ -110,3 +149,7 @@ networks:
     # instance markdorf
     db_markdorf:
     markdorf:
+
+    # instance wk_000
+    db_000:
+    wk_000:
