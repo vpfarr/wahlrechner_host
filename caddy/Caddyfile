@@ -34,4 +34,37 @@
         root * /www/markdorf
         reverse_proxy markdorf:8000
     }
+
+    # instance btw25_91_euskirchen
+    route /btw25_91_euskirchen* {
+        handle_path /btw25_91_euskirchen/static/* {
+            root * /www/btw25_91_euskirchen/static
+            file_server
+        }
+        
+        handle_path /btw25_91_euskirchen/media/* {
+            root * /www/btw25_91_euskirchen/media
+            file_server
+        }
+
+        root * /www/btw25_91_euskirchen
+        reverse_proxy btw25_91_euskirchen:8000
+    }
+
+
+    # instance btw25_293_bodensee
+    route /btw25_293_bodensee* {
+        handle_path /btw25_293_bodensee/static/* {
+            root * /www/btw25_293_bodensee/static
+            file_server
+        }
+        
+        handle_path /btw25_293_bodensee/media/* {
+            root * /www/btw25_293_bodensee/media
+            file_server
+        }
+
+        root * /www/btw25_293_bodensee
+        reverse_proxy btw25_293_bodensee:8000
+    }
 }

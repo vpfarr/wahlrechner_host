@@ -10,8 +10,14 @@ services:
             - "443:443/udp"
         networks:
             - caddy
+            # instance markdorf
             - markdorf
+            # instance dev
             - dev
+            # instance btw25_91_euskirchen
+            - btw25_91_euskirchen
+            # instance btw25_293_bodensee
+            - btw25_293_bodensee
         volumes:
             - ./caddy/Caddyfile:/etc/caddy/Caddyfile
             - caddy_data:/data
@@ -22,13 +28,19 @@ services:
             # instance dev
             - ./data/dev/static:/www/dev/static
             - ./data/dev/media:/www/dev/media
+            # instance btw25_91_euskirchen
+            - ./data/btw25_91_euskirchen/static:/www/btw25_91_euskirchen/static
+            - ./data/btw25_91_euskirchen/media:/www/btw25_91_euskirchen/media
+            # instance btw25_293_bodensee
+            - ./data/btw25_293_bodensee/static:/www/btw25_293_bodensee/static
+            - ./data/btw25_293_bodensee/media:/www/btw25_293_bodensee/media
         env_file:
             - ./caddy/caddy.env
+
 
     # instance markdorf
     markdorf:
         container_name: markdorf
-        #image: ghcr.io/wahlrechner/wahlrechner:latest
         build:
             context: ../wahlrechner
         command: bash -c 'docker/wait-for-it/wait-for-it.sh db_markdorf:3306 -t 120 -- docker/startup-production.sh'
@@ -61,10 +73,10 @@ services:
         volumes:
             - ./data/markdorf/mysql:/var/lib/mysql
 
-    # instance markdorf
+
+    # instance dev
     dev:
         container_name: dev
-        #image: ghcr.io/wahlrechner/wahlrechner:latest
         build:
             context: ../wahlrechner
         command: bash -c 'docker/wait-for-it/wait-for-it.sh db_dev:3306 -t 120 -- docker/startup-production.sh'
@@ -97,6 +109,78 @@ services:
         volumes:
             - ./data/dev/mysql:/var/lib/mysql
 
+
+    # instance btw25_91_euskirchen
+    btw25_91_euskirchen:
+        container_name: btw25_91_euskirchen
+        build:
+            context: ../wahlrechner
+        command: bash -c 'docker/wait-for-it/wait-for-it.sh db_btw25_91_euskirchen:3306 -t 120 -- docker/startup-production.sh'
+        restart: always
+        networks:
+            - btw25_91_euskirchen
+            - db_btw25_91_euskirchen
+        volumes:
+            - ./data/btw25_91_euskirchen/static:/code/assets/
+            - ./data/btw25_91_euskirchen/media:/code/media/
+            - ./data/btw25_91_euskirchen/logs/wahlrechner:/code/logs/
+            - ./data/btw25_91_euskirchen/migrations/wahlrechner:/code/wahlrechner/migrations
+            - ./data/btw25_91_euskirchen/stats:/code/wahlrechner/stats
+            - ./themes:/code/themes
+        env_file:
+            - ./config/config.env
+            - ./config/config_btw25_91_euskirchen.env
+        depends_on:
+            - db_btw25_91_euskirchen
+
+    db_btw25_91_euskirchen:
+        container_name: db_btw25_91_euskirchen
+        image: mariadb
+        restart: always
+        networks:
+            - db_btw25_91_euskirchen
+        env_file:
+            - ./config/config.env
+            - ./config/config_btw25_91_euskirchen.env
+        volumes:
+            - ./data/btw25_91_euskirchen/mysql:/var/lib/mysql
+
+
+    # instance btw25_293_bodensee
+    btw25_293_bodensee:
+        container_name: btw25_293_bodensee
+        build:
+            context: ../wahlrechner
+        command: bash -c 'docker/wait-for-it/wait-for-it.sh db_btw25_293_bodensee:3306 -t 120 -- docker/startup-production.sh'
+        restart: always
+        networks:
+            - btw25_293_bodensee
+            - db_btw25_293_bodensee
+        volumes:
+            - ./data/btw25_293_bodensee/static:/code/assets/
+            - ./data/btw25_293_bodensee/media:/code/media/
+            - ./data/btw25_293_bodensee/logs/wahlrechner:/code/logs/
+            - ./data/btw25_293_bodensee/migrations/wahlrechner:/code/wahlrechner/migrations
+            - ./data/btw25_293_bodensee/stats:/code/wahlrechner/stats
+            - ./themes:/code/themes
+        env_file:
+            - ./config/config.env
+            - ./config/config_btw25_293_bodensee.env
+        depends_on:
+            - db_btw25_293_bodensee
+
+    db_btw25_293_bodensee:
+        container_name: db_btw25_293_bodensee
+        image: mariadb
+        restart: always
+        networks:
+            - db_btw25_293_bodensee
+        env_file:
+            - ./config/config.env
+            - ./config/config_btw25_293_bodensee.env
+        volumes:
+            - ./data/btw25_293_bodensee/mysql:/var/lib/mysql
+
 volumes:
     caddy_data:
     caddy_config:
@@ -110,3 +194,9 @@ networks:
     # instance markdorf
     db_markdorf:
     markdorf:
+    # instance btw25_91_euskirchen
+    db_btw25_91_euskirchen:
+    btw25_91_euskirchen:
+    # instance btw25_293_bodensee
+    db_btw25_293_bodensee:
+    btw25_293_bodensee:
