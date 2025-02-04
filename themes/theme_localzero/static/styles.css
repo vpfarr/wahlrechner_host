@@ -911,11 +911,21 @@ p.text-gray-600 > span.text-gray-400 {
   width:12rem
  }
 }
+.reason-scroll-container {
+  display:flex !important;
+  flex-direction: column !important;
+  height: 1000px !important;
+}
+.reason-scroll-main {
+  flex: 1 !important;
+  overflow-y: scroll !important;
+}
 .btn-row {
  margin-top:1.5rem;
  display:flex;
  flex-direction:column;
- justify-content:space-between
+ justify-content:space-between;
+ padding-bottom: 15px;
 }
 .btn-row > .btn:hover > .h-5 {
  color: white !important;
