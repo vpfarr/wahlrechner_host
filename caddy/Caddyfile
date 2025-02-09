@@ -67,4 +67,216 @@
         root * /www/btw25_293_bodensee
         reverse_proxy btw25_293_bodensee:8000
     }
+
+    # instance btw25_100_leverkusen_koeln_iv
+        route /btw25_100_leverkusen_koeln_iv* {
+            handle_path /btw25_100_leverkusen_koeln_iv/static/* {
+                root * /www/btw25_100_leverkusen_koeln_iv/static
+                file_server
+            }
+            
+            handle_path /btw25_100_leverkusen_koeln_iv/media/* {
+                root * /www/btw25_100_leverkusen_koeln_iv/media
+                file_server
+            }
+    
+            root * /www/btw25_100_leverkusen_koeln_iv
+            reverse_proxy btw25_100_leverkusen_koeln_iv:8000
+        }
+    # instance btw25_258_stuttgart_i
+        route /btw25_258_stuttgart_i* {
+            handle_path /btw25_258_stuttgart_i/static/* {
+                root * /www/btw25_258_stuttgart_i/static
+                file_server
+            }
+            
+            handle_path /btw25_258_stuttgart_i/media/* {
+                root * /www/btw25_258_stuttgart_i/media
+                file_server
+            }
+    
+            root * /www/btw25_258_stuttgart_i
+            reverse_proxy btw25_258_stuttgart_i:8000
+        }
+    # instance btw25_259_stuttgart_ii
+        route /btw25_259_stuttgart_ii* {
+            handle_path /btw25_259_stuttgart_ii/static/* {
+                root * /www/btw25_259_stuttgart_ii/static
+                file_server
+            }
+            
+            handle_path /btw25_259_stuttgart_ii/media/* {
+                root * /www/btw25_259_stuttgart_ii/media
+                file_server
+            }
+    
+            root * /www/btw25_259_stuttgart_ii
+            reverse_proxy btw25_259_stuttgart_ii:8000
+        }
+    # instance btw25_260_boeblingen
+        route /btw25_260_boeblingen* {
+            handle_path /btw25_260_boeblingen/static/* {
+                root * /www/btw25_260_boeblingen/static
+                file_server
+            }
+            
+            handle_path /btw25_260_boeblingen/media/* {
+                root * /www/btw25_260_boeblingen/media
+                file_server
+            }
+    
+            root * /www/btw25_260_boeblingen
+            reverse_proxy btw25_260_boeblingen:8000
+        }
+    # instance btw25_261_esslingen
+        route /btw25_261_esslingen* {
+            handle_path /btw25_261_esslingen/static/* {
+                root * /www/btw25_261_esslingen/static
+                file_server
+            }
+            
+            handle_path /btw25_261_esslingen/media/* {
+                root * /www/btw25_261_esslingen/media
+                file_server
+            }
+    
+            root * /www/btw25_261_esslingen
+            reverse_proxy btw25_261_esslingen:8000
+        }
+    # instance btw25_263_goeppingen
+        route /btw25_263_goeppingen* {
+            handle_path /btw25_263_goeppingen/static/* {
+                root * /www/btw25_263_goeppingen/static
+                file_server
+            }
+            
+            handle_path /btw25_263_goeppingen/media/* {
+                root * /www/btw25_263_goeppingen/media
+                file_server
+            }
+    
+            root * /www/btw25_263_goeppingen
+            reverse_proxy btw25_263_goeppingen:8000
+        }
+    # instance btw25_264_waiblingen
+        route /btw25_264_waiblingen* {
+            handle_path /btw25_264_waiblingen/static/* {
+                root * /www/btw25_264_waiblingen/static
+                file_server
+            }
+            
+            handle_path /btw25_264_waiblingen/media/* {
+                root * /www/btw25_264_waiblingen/media
+                file_server
+            }
+    
+            root * /www/btw25_264_waiblingen
+            reverse_proxy btw25_264_waiblingen:8000
+        }
+    # instance btw25_265_ludwigsburg
+        route /btw25_265_ludwigsburg* {
+            handle_path /btw25_265_ludwigsburg/static/* {
+                root * /www/btw25_265_ludwigsburg/static
+                file_server
+            }
+            
+            handle_path /btw25_265_ludwigsburg/media/* {
+                root * /www/btw25_265_ludwigsburg/media
+                file_server
+            }
+    
+            root * /www/btw25_265_ludwigsburg
+            reverse_proxy btw25_265_ludwigsburg:8000
+        }
+    # instance btw25_268_schwaebisch_hall_hohenlohe
+        route /btw25_268_schwaebisch_hall_hohenlohe* {
+            handle_path /btw25_268_schwaebisch_hall_hohenlohe/static/* {
+                root * /www/btw25_268_schwaebisch_hall_hohenlohe/static
+                file_server
+            }
+            
+            handle_path /btw25_268_schwaebisch_hall_hohenlohe/media/* {
+                root * /www/btw25_268_schwaebisch_hall_hohenlohe/media
+                file_server
+            }
+    
+            root * /www/btw25_268_schwaebisch_hall_hohenlohe
+            reverse_proxy btw25_268_schwaebisch_hall_hohenlohe:8000
+        }
+    # instance btw25_280_calw
+        route /btw25_280_calw* {
+            handle_path /btw25_280_calw/static/* {
+                root * /www/btw25_280_calw/static
+                file_server
+            }
+            
+            handle_path /btw25_280_calw/media/* {
+                root * /www/btw25_280_calw/media
+                file_server
+            }
+    
+            root * /www/btw25_280_calw
+            reverse_proxy btw25_280_calw:8000
+        }
+    # instance btw25_281_freiburg
+        route /btw25_281_freiburg* {
+            handle_path /btw25_281_freiburg/static/* {
+                root * /www/btw25_281_freiburg/static
+                file_server
+            }
+            
+            handle_path /btw25_281_freiburg/media/* {
+                root * /www/btw25_281_freiburg/media
+                file_server
+            }
+    
+            root * /www/btw25_281_freiburg
+            reverse_proxy btw25_281_freiburg:8000
+        }
+    # instance btw25_282_loerrach_muellheim
+        route /btw25_282_loerrach_muellheim* {
+            handle_path /btw25_282_loerrach_muellheim/static/* {
+                root * /www/btw25_282_loerrach_muellheim/static
+                file_server
+            }
+            
+            handle_path /btw25_282_loerrach_muellheim/media/* {
+                root * /www/btw25_282_loerrach_muellheim/media
+                file_server
+            }
+    
+            root * /www/btw25_282_loerrach_muellheim
+            reverse_proxy btw25_282_loerrach_muellheim:8000
+        }
+    # instance btw25_289_reutlingen
+        route /btw25_289_reutlingen* {
+            handle_path /btw25_289_reutlingen/static/* {
+                root * /www/btw25_289_reutlingen/static
+                file_server
+            }
+            
+            handle_path /btw25_289_reutlingen/media/* {
+                root * /www/btw25_289_reutlingen/media
+                file_server
+            }
+    
+            root * /www/btw25_289_reutlingen
+            reverse_proxy btw25_289_reutlingen:8000
+        }
+    # instance btw25_290_tuebingen
+        route /btw25_290_tuebingen* {
+            handle_path /btw25_290_tuebingen/static/* {
+                root * /www/btw25_290_tuebingen/static
+                file_server
+            }
+            
+            handle_path /btw25_290_tuebingen/media/* {
+                root * /www/btw25_290_tuebingen/media
+                file_server
+            }
+    
+            root * /www/btw25_290_tuebingen
+            reverse_proxy btw25_290_tuebingen:8000
+        }
+
 }
