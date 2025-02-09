@@ -18,6 +18,21 @@ services:
             - btw25_91_euskirchen
             # instance btw25_293_bodensee
             - btw25_293_bodensee
+            - btw25_100_leverkusen_koeln_iv
+            - btw25_258_stuttgart_i
+            - btw25_259_stuttgart_ii
+            - btw25_260_boeblingen
+            - btw25_261_esslingen
+            - btw25_263_goeppingen
+            - btw25_264_waiblingen
+            - btw25_265_ludwigsburg
+            - btw25_268_schwaebisch_hall_hohenlohe
+            - btw25_280_calw
+            - btw25_281_freiburg
+            - btw25_282_loerrach_muellheim
+            - btw25_289_reutlingen
+            - btw25_290_tuebingen
+
         volumes:
             - ./caddy/Caddyfile:/etc/caddy/Caddyfile
             - caddy_data:/data
@@ -34,6 +49,49 @@ services:
             # instance btw25_293_bodensee
             - ./data/btw25_293_bodensee/static:/www/btw25_293_bodensee/static
             - ./data/btw25_293_bodensee/media:/www/btw25_293_bodensee/media
+            # instance btw25_100_leverkusen_koeln_iv
+            - ./data/btw25_100_leverkusen_koeln_iv/static:/www/btw25_100_leverkusen_koeln_iv/static
+            - ./data/btw25_100_leverkusen_koeln_iv/media:/www/btw25_100_leverkusen_koeln_iv/media
+            # instance btw25_258_stuttgart_i
+            - ./data/btw25_258_stuttgart_i/static:/www/btw25_258_stuttgart_i/static
+            - ./data/btw25_258_stuttgart_i/media:/www/btw25_258_stuttgart_i/media
+            # instance btw25_259_stuttgart_ii
+            - ./data/btw25_259_stuttgart_ii/static:/www/btw25_259_stuttgart_ii/static
+            - ./data/btw25_259_stuttgart_ii/media:/www/btw25_259_stuttgart_ii/media
+            # instance btw25_260_boeblingen
+            - ./data/btw25_260_boeblingen/static:/www/btw25_260_boeblingen/static
+            - ./data/btw25_260_boeblingen/media:/www/btw25_260_boeblingen/media
+            # instance btw25_261_esslingen
+            - ./data/btw25_261_esslingen/static:/www/btw25_261_esslingen/static
+            - ./data/btw25_261_esslingen/media:/www/btw25_261_esslingen/media
+            # instance btw25_263_goeppingen
+            - ./data/btw25_263_goeppingen/static:/www/btw25_263_goeppingen/static
+            - ./data/btw25_263_goeppingen/media:/www/btw25_263_goeppingen/media
+            # instance btw25_264_waiblingen
+            - ./data/btw25_264_waiblingen/static:/www/btw25_264_waiblingen/static
+            - ./data/btw25_264_waiblingen/media:/www/btw25_264_waiblingen/media
+            # instance btw25_265_ludwigsburg
+            - ./data/btw25_265_ludwigsburg/static:/www/btw25_265_ludwigsburg/static
+            - ./data/btw25_265_ludwigsburg/media:/www/btw25_265_ludwigsburg/media
+            # instance btw25_268_schwaebisch_hall_hohenlohe
+            - ./data/btw25_268_schwaebisch_hall_hohenlohe/static:/www/btw25_268_schwaebisch_hall_hohenlohe/static
+            - ./data/btw25_268_schwaebisch_hall_hohenlohe/media:/www/btw25_268_schwaebisch_hall_hohenlohe/media
+            # instance btw25_280_calw
+            - ./data/btw25_280_calw/static:/www/btw25_280_calw/static
+            - ./data/btw25_280_calw/media:/www/btw25_280_calw/media
+            # instance btw25_281_freiburg
+            - ./data/btw25_281_freiburg/static:/www/btw25_281_freiburg/static
+            - ./data/btw25_281_freiburg/media:/www/btw25_281_freiburg/media
+            # instance btw25_282_loerrach_muellheim
+            - ./data/btw25_282_loerrach_muellheim/static:/www/btw25_282_loerrach_muellheim/static
+            - ./data/btw25_282_loerrach_muellheim/media:/www/btw25_282_loerrach_muellheim/media
+            # instance btw25_289_reutlingen
+            - ./data/btw25_289_reutlingen/static:/www/btw25_289_reutlingen/static
+            - ./data/btw25_289_reutlingen/media:/www/btw25_289_reutlingen/media
+            # instance btw25_290_tuebingen
+            - ./data/btw25_290_tuebingen/static:/www/btw25_290_tuebingen/static
+            - ./data/btw25_290_tuebingen/media:/www/btw25_290_tuebingen/media
+
         env_file:
             - ./caddy/caddy.env
 
@@ -181,6 +239,496 @@ services:
         volumes:
             - ./data/btw25_293_bodensee/mysql:/var/lib/mysql
 
+    # instance btw25_100_leverkusen_koeln_iv
+    btw25_100_leverkusen_koeln_iv:
+        container_name: btw25_100_leverkusen_koeln_iv
+        build:
+            context: ../wahlrechner
+        command: bash -c 'docker/wait-for-it/wait-for-it.sh db_btw25_100_leverkusen_koeln_iv:3306 -t 120 -- docker/startup-production.sh'
+        restart: always
+        networks:
+            - btw25_100_leverkusen_koeln_iv
+            - db_btw25_100_leverkusen_koeln_iv
+        volumes:
+            - ./data/btw25_100_leverkusen_koeln_iv/static:/code/assets/
+            - ./data/btw25_100_leverkusen_koeln_iv/media:/code/media/
+            - ./data/btw25_100_leverkusen_koeln_iv/logs/wahlrechner:/code/logs/
+            - ./data/btw25_100_leverkusen_koeln_iv/migrations/wahlrechner:/code/wahlrechner/migrations
+            - ./data/btw25_100_leverkusen_koeln_iv/stats:/code/wahlrechner/stats
+            - ./themes:/code/themes
+        env_file:
+            - ./config/config.env
+            - ./config/config_btw25_100_leverkusen_koeln_iv.env
+        depends_on:
+            - db_btw25_100_leverkusen_koeln_iv
+
+    db_btw25_100_leverkusen_koeln_iv:
+        container_name: db_btw25_100_leverkusen_koeln_iv
+        image: mariadb
+        restart: always
+        networks:
+            - db_btw25_100_leverkusen_koeln_iv
+        env_file:
+            - ./config/config.env
+            - ./config/config_btw25_100_leverkusen_koeln_iv.env
+        volumes:
+            - ./data/btw25_100_leverkusen_koeln_iv/mysql:/var/lib/mysql
+
+    # instance btw25_258_stuttgart_i
+    btw25_258_stuttgart_i:
+        container_name: btw25_258_stuttgart_i
+        build:
+            context: ../wahlrechner
+        command: bash -c 'docker/wait-for-it/wait-for-it.sh db_btw25_258_stuttgart_i:3306 -t 120 -- docker/startup-production.sh'
+        restart: always
+        networks:
+            - btw25_258_stuttgart_i
+            - db_btw25_258_stuttgart_i
+        volumes:
+            - ./data/btw25_258_stuttgart_i/static:/code/assets/
+            - ./data/btw25_258_stuttgart_i/media:/code/media/
+            - ./data/btw25_258_stuttgart_i/logs/wahlrechner:/code/logs/
+            - ./data/btw25_258_stuttgart_i/migrations/wahlrechner:/code/wahlrechner/migrations
+            - ./data/btw25_258_stuttgart_i/stats:/code/wahlrechner/stats
+            - ./themes:/code/themes
+        env_file:
+            - ./config/config.env
+            - ./config/config_btw25_258_stuttgart_i.env
+        depends_on:
+            - db_btw25_258_stuttgart_i
+
+    db_btw25_258_stuttgart_i:
+        container_name: db_btw25_258_stuttgart_i
+        image: mariadb
+        restart: always
+        networks:
+            - db_btw25_258_stuttgart_i
+        env_file:
+            - ./config/config.env
+            - ./config/config_btw25_258_stuttgart_i.env
+        volumes:
+            - ./data/btw25_258_stuttgart_i/mysql:/var/lib/mysql
+
+    # instance btw25_259_stuttgart_ii
+    btw25_259_stuttgart_ii:
+        container_name: btw25_259_stuttgart_ii
+        build:
+            context: ../wahlrechner
+        command: bash -c 'docker/wait-for-it/wait-for-it.sh db_btw25_259_stuttgart_ii:3306 -t 120 -- docker/startup-production.sh'
+        restart: always
+        networks:
+            - btw25_259_stuttgart_ii
+            - db_btw25_259_stuttgart_ii
+        volumes:
+            - ./data/btw25_259_stuttgart_ii/static:/code/assets/
+            - ./data/btw25_259_stuttgart_ii/media:/code/media/
+            - ./data/btw25_259_stuttgart_ii/logs/wahlrechner:/code/logs/
+            - ./data/btw25_259_stuttgart_ii/migrations/wahlrechner:/code/wahlrechner/migrations
+            - ./data/btw25_259_stuttgart_ii/stats:/code/wahlrechner/stats
+            - ./themes:/code/themes
+        env_file:
+            - ./config/config.env
+            - ./config/config_btw25_259_stuttgart_ii.env
+        depends_on:
+            - db_btw25_259_stuttgart_ii
+
+    db_btw25_259_stuttgart_ii:
+        container_name: db_btw25_259_stuttgart_ii
+        image: mariadb
+        restart: always
+        networks:
+            - db_btw25_259_stuttgart_ii
+        env_file:
+            - ./config/config.env
+            - ./config/config_btw25_259_stuttgart_ii.env
+        volumes:
+            - ./data/btw25_259_stuttgart_ii/mysql:/var/lib/mysql
+
+    # instance btw25_260_boeblingen
+    btw25_260_boeblingen:
+        container_name: btw25_260_boeblingen
+        build:
+            context: ../wahlrechner
+        command: bash -c 'docker/wait-for-it/wait-for-it.sh db_btw25_260_boeblingen:3306 -t 120 -- docker/startup-production.sh'
+        restart: always
+        networks:
+            - btw25_260_boeblingen
+            - db_btw25_260_boeblingen
+        volumes:
+            - ./data/btw25_260_boeblingen/static:/code/assets/
+            - ./data/btw25_260_boeblingen/media:/code/media/
+            - ./data/btw25_260_boeblingen/logs/wahlrechner:/code/logs/
+            - ./data/btw25_260_boeblingen/migrations/wahlrechner:/code/wahlrechner/migrations
+            - ./data/btw25_260_boeblingen/stats:/code/wahlrechner/stats
+            - ./themes:/code/themes
+        env_file:
+            - ./config/config.env
+            - ./config/config_btw25_260_boeblingen.env
+        depends_on:
+            - db_btw25_260_boeblingen
+
+    db_btw25_260_boeblingen:
+        container_name: db_btw25_260_boeblingen
+        image: mariadb
+        restart: always
+        networks:
+            - db_btw25_260_boeblingen
+        env_file:
+            - ./config/config.env
+            - ./config/config_btw25_260_boeblingen.env
+        volumes:
+            - ./data/btw25_260_boeblingen/mysql:/var/lib/mysql
+
+    # instance btw25_261_esslingen
+    btw25_261_esslingen:
+        container_name: btw25_261_esslingen
+        build:
+            context: ../wahlrechner
+        command: bash -c 'docker/wait-for-it/wait-for-it.sh db_btw25_261_esslingen:3306 -t 120 -- docker/startup-production.sh'
+        restart: always
+        networks:
+            - btw25_261_esslingen
+            - db_btw25_261_esslingen
+        volumes:
+            - ./data/btw25_261_esslingen/static:/code/assets/
+            - ./data/btw25_261_esslingen/media:/code/media/
+            - ./data/btw25_261_esslingen/logs/wahlrechner:/code/logs/
+            - ./data/btw25_261_esslingen/migrations/wahlrechner:/code/wahlrechner/migrations
+            - ./data/btw25_261_esslingen/stats:/code/wahlrechner/stats
+            - ./themes:/code/themes
+        env_file:
+            - ./config/config.env
+            - ./config/config_btw25_261_esslingen.env
+        depends_on:
+            - db_btw25_261_esslingen
+
+    db_btw25_261_esslingen:
+        container_name: db_btw25_261_esslingen
+        image: mariadb
+        restart: always
+        networks:
+            - db_btw25_261_esslingen
+        env_file:
+            - ./config/config.env
+            - ./config/config_btw25_261_esslingen.env
+        volumes:
+            - ./data/btw25_261_esslingen/mysql:/var/lib/mysql
+
+    # instance btw25_263_goeppingen
+    btw25_263_goeppingen:
+        container_name: btw25_263_goeppingen
+        build:
+            context: ../wahlrechner
+        command: bash -c 'docker/wait-for-it/wait-for-it.sh db_btw25_263_goeppingen:3306 -t 120 -- docker/startup-production.sh'
+        restart: always
+        networks:
+            - btw25_263_goeppingen
+            - db_btw25_263_goeppingen
+        volumes:
+            - ./data/btw25_263_goeppingen/static:/code/assets/
+            - ./data/btw25_263_goeppingen/media:/code/media/
+            - ./data/btw25_263_goeppingen/logs/wahlrechner:/code/logs/
+            - ./data/btw25_263_goeppingen/migrations/wahlrechner:/code/wahlrechner/migrations
+            - ./data/btw25_263_goeppingen/stats:/code/wahlrechner/stats
+            - ./themes:/code/themes
+        env_file:
+            - ./config/config.env
+            - ./config/config_btw25_263_goeppingen.env
+        depends_on:
+            - db_btw25_263_goeppingen
+
+    db_btw25_263_goeppingen:
+        container_name: db_btw25_263_goeppingen
+        image: mariadb
+        restart: always
+        networks:
+            - db_btw25_263_goeppingen
+        env_file:
+            - ./config/config.env
+            - ./config/config_btw25_263_goeppingen.env
+        volumes:
+            - ./data/btw25_263_goeppingen/mysql:/var/lib/mysql
+
+    # instance btw25_264_waiblingen
+    btw25_264_waiblingen:
+        container_name: btw25_264_waiblingen
+        build:
+            context: ../wahlrechner
+        command: bash -c 'docker/wait-for-it/wait-for-it.sh db_btw25_264_waiblingen:3306 -t 120 -- docker/startup-production.sh'
+        restart: always
+        networks:
+            - btw25_264_waiblingen
+            - db_btw25_264_waiblingen
+        volumes:
+            - ./data/btw25_264_waiblingen/static:/code/assets/
+            - ./data/btw25_264_waiblingen/media:/code/media/
+            - ./data/btw25_264_waiblingen/logs/wahlrechner:/code/logs/
+            - ./data/btw25_264_waiblingen/migrations/wahlrechner:/code/wahlrechner/migrations
+            - ./data/btw25_264_waiblingen/stats:/code/wahlrechner/stats
+            - ./themes:/code/themes
+        env_file:
+            - ./config/config.env
+            - ./config/config_btw25_264_waiblingen.env
+        depends_on:
+            - db_btw25_264_waiblingen
+
+    db_btw25_264_waiblingen:
+        container_name: db_btw25_264_waiblingen
+        image: mariadb
+        restart: always
+        networks:
+            - db_btw25_264_waiblingen
+        env_file:
+            - ./config/config.env
+            - ./config/config_btw25_264_waiblingen.env
+        volumes:
+            - ./data/btw25_264_waiblingen/mysql:/var/lib/mysql
+
+    # instance btw25_265_ludwigsburg
+    btw25_265_ludwigsburg:
+        container_name: btw25_265_ludwigsburg
+        build:
+            context: ../wahlrechner
+        command: bash -c 'docker/wait-for-it/wait-for-it.sh db_btw25_265_ludwigsburg:3306 -t 120 -- docker/startup-production.sh'
+        restart: always
+        networks:
+            - btw25_265_ludwigsburg
+            - db_btw25_265_ludwigsburg
+        volumes:
+            - ./data/btw25_265_ludwigsburg/static:/code/assets/
+            - ./data/btw25_265_ludwigsburg/media:/code/media/
+            - ./data/btw25_265_ludwigsburg/logs/wahlrechner:/code/logs/
+            - ./data/btw25_265_ludwigsburg/migrations/wahlrechner:/code/wahlrechner/migrations
+            - ./data/btw25_265_ludwigsburg/stats:/code/wahlrechner/stats
+            - ./themes:/code/themes
+        env_file:
+            - ./config/config.env
+            - ./config/config_btw25_265_ludwigsburg.env
+        depends_on:
+            - db_btw25_265_ludwigsburg
+
+    db_btw25_265_ludwigsburg:
+        container_name: db_btw25_265_ludwigsburg
+        image: mariadb
+        restart: always
+        networks:
+            - db_btw25_265_ludwigsburg
+        env_file:
+            - ./config/config.env
+            - ./config/config_btw25_265_ludwigsburg.env
+        volumes:
+            - ./data/btw25_265_ludwigsburg/mysql:/var/lib/mysql
+
+    # instance btw25_268_schwaebisch_hall_hohenlohe
+    btw25_268_schwaebisch_hall_hohenlohe:
+        container_name: btw25_268_schwaebisch_hall_hohenlohe
+        build:
+            context: ../wahlrechner
+        command: bash -c 'docker/wait-for-it/wait-for-it.sh db_btw25_268_schwaebisch_hall_hohenlohe:3306 -t 120 -- docker/startup-production.sh'
+        restart: always
+        networks:
+            - btw25_268_schwaebisch_hall_hohenlohe
+            - db_btw25_268_schwaebisch_hall_hohenlohe
+        volumes:
+            - ./data/btw25_268_schwaebisch_hall_hohenlohe/static:/code/assets/
+            - ./data/btw25_268_schwaebisch_hall_hohenlohe/media:/code/media/
+            - ./data/btw25_268_schwaebisch_hall_hohenlohe/logs/wahlrechner:/code/logs/
+            - ./data/btw25_268_schwaebisch_hall_hohenlohe/migrations/wahlrechner:/code/wahlrechner/migrations
+            - ./data/btw25_268_schwaebisch_hall_hohenlohe/stats:/code/wahlrechner/stats
+            - ./themes:/code/themes
+        env_file:
+            - ./config/config.env
+            - ./config/config_btw25_268_schwaebisch_hall_hohenlohe.env
+        depends_on:
+            - db_btw25_268_schwaebisch_hall_hohenlohe
+
+    db_btw25_268_schwaebisch_hall_hohenlohe:
+        container_name: db_btw25_268_schwaebisch_hall_hohenlohe
+        image: mariadb
+        restart: always
+        networks:
+            - db_btw25_268_schwaebisch_hall_hohenlohe
+        env_file:
+            - ./config/config.env
+            - ./config/config_btw25_268_schwaebisch_hall_hohenlohe.env
+        volumes:
+            - ./data/btw25_268_schwaebisch_hall_hohenlohe/mysql:/var/lib/mysql
+
+    # instance btw25_280_calw
+    btw25_280_calw:
+        container_name: btw25_280_calw
+        build:
+            context: ../wahlrechner
+        command: bash -c 'docker/wait-for-it/wait-for-it.sh db_btw25_280_calw:3306 -t 120 -- docker/startup-production.sh'
+        restart: always
+        networks:
+            - btw25_280_calw
+            - db_btw25_280_calw
+        volumes:
+            - ./data/btw25_280_calw/static:/code/assets/
+            - ./data/btw25_280_calw/media:/code/media/
+            - ./data/btw25_280_calw/logs/wahlrechner:/code/logs/
+            - ./data/btw25_280_calw/migrations/wahlrechner:/code/wahlrechner/migrations
+            - ./data/btw25_280_calw/stats:/code/wahlrechner/stats
+            - ./themes:/code/themes
+        env_file:
+            - ./config/config.env
+            - ./config/config_btw25_280_calw.env
+        depends_on:
+            - db_btw25_280_calw
+
+    db_btw25_280_calw:
+        container_name: db_btw25_280_calw
+        image: mariadb
+        restart: always
+        networks:
+            - db_btw25_280_calw
+        env_file:
+            - ./config/config.env
+            - ./config/config_btw25_280_calw.env
+        volumes:
+            - ./data/btw25_280_calw/mysql:/var/lib/mysql
+
+    # instance btw25_281_freiburg
+    btw25_281_freiburg:
+        container_name: btw25_281_freiburg
+        build:
+            context: ../wahlrechner
+        command: bash -c 'docker/wait-for-it/wait-for-it.sh db_btw25_281_freiburg:3306 -t 120 -- docker/startup-production.sh'
+        restart: always
+        networks:
+            - btw25_281_freiburg
+            - db_btw25_281_freiburg
+        volumes:
+            - ./data/btw25_281_freiburg/static:/code/assets/
+            - ./data/btw25_281_freiburg/media:/code/media/
+            - ./data/btw25_281_freiburg/logs/wahlrechner:/code/logs/
+            - ./data/btw25_281_freiburg/migrations/wahlrechner:/code/wahlrechner/migrations
+            - ./data/btw25_281_freiburg/stats:/code/wahlrechner/stats
+            - ./themes:/code/themes
+        env_file:
+            - ./config/config.env
+            - ./config/config_btw25_281_freiburg.env
+        depends_on:
+            - db_btw25_281_freiburg
+
+    db_btw25_281_freiburg:
+        container_name: db_btw25_281_freiburg
+        image: mariadb
+        restart: always
+        networks:
+            - db_btw25_281_freiburg
+        env_file:
+            - ./config/config.env
+            - ./config/config_btw25_281_freiburg.env
+        volumes:
+            - ./data/btw25_281_freiburg/mysql:/var/lib/mysql
+
+    # instance btw25_282_loerrach_muellheim
+    btw25_282_loerrach_muellheim:
+        container_name: btw25_282_loerrach_muellheim
+        build:
+            context: ../wahlrechner
+        command: bash -c 'docker/wait-for-it/wait-for-it.sh db_btw25_282_loerrach_muellheim:3306 -t 120 -- docker/startup-production.sh'
+        restart: always
+        networks:
+            - btw25_282_loerrach_muellheim
+            - db_btw25_282_loerrach_muellheim
+        volumes:
+            - ./data/btw25_282_loerrach_muellheim/static:/code/assets/
+            - ./data/btw25_282_loerrach_muellheim/media:/code/media/
+            - ./data/btw25_282_loerrach_muellheim/logs/wahlrechner:/code/logs/
+            - ./data/btw25_282_loerrach_muellheim/migrations/wahlrechner:/code/wahlrechner/migrations
+            - ./data/btw25_282_loerrach_muellheim/stats:/code/wahlrechner/stats
+            - ./themes:/code/themes
+        env_file:
+            - ./config/config.env
+            - ./config/config_btw25_282_loerrach_muellheim.env
+        depends_on:
+            - db_btw25_282_loerrach_muellheim
+
+    db_btw25_282_loerrach_muellheim:
+        container_name: db_btw25_282_loerrach_muellheim
+        image: mariadb
+        restart: always
+        networks:
+            - db_btw25_282_loerrach_muellheim
+        env_file:
+            - ./config/config.env
+            - ./config/config_btw25_282_loerrach_muellheim.env
+        volumes:
+            - ./data/btw25_282_loerrach_muellheim/mysql:/var/lib/mysql
+
+    # instance btw25_289_reutlingen
+    btw25_289_reutlingen:
+        container_name: btw25_289_reutlingen
+        build:
+            context: ../wahlrechner
+        command: bash -c 'docker/wait-for-it/wait-for-it.sh db_btw25_289_reutlingen:3306 -t 120 -- docker/startup-production.sh'
+        restart: always
+        networks:
+            - btw25_289_reutlingen
+            - db_btw25_289_reutlingen
+        volumes:
+            - ./data/btw25_289_reutlingen/static:/code/assets/
+            - ./data/btw25_289_reutlingen/media:/code/media/
+            - ./data/btw25_289_reutlingen/logs/wahlrechner:/code/logs/
+            - ./data/btw25_289_reutlingen/migrations/wahlrechner:/code/wahlrechner/migrations
+            - ./data/btw25_289_reutlingen/stats:/code/wahlrechner/stats
+            - ./themes:/code/themes
+        env_file:
+            - ./config/config.env
+            - ./config/config_btw25_289_reutlingen.env
+        depends_on:
+            - db_btw25_289_reutlingen
+
+    db_btw25_289_reutlingen:
+        container_name: db_btw25_289_reutlingen
+        image: mariadb
+        restart: always
+        networks:
+            - db_btw25_289_reutlingen
+        env_file:
+            - ./config/config.env
+            - ./config/config_btw25_289_reutlingen.env
+        volumes:
+            - ./data/btw25_289_reutlingen/mysql:/var/lib/mysql
+
+    # instance btw25_290_tuebingen
+    btw25_290_tuebingen:
+        container_name: btw25_290_tuebingen
+        build:
+            context: ../wahlrechner
+        command: bash -c 'docker/wait-for-it/wait-for-it.sh db_btw25_290_tuebingen:3306 -t 120 -- docker/startup-production.sh'
+        restart: always
+        networks:
+            - btw25_290_tuebingen
+            - db_btw25_290_tuebingen
+        volumes:
+            - ./data/btw25_290_tuebingen/static:/code/assets/
+            - ./data/btw25_290_tuebingen/media:/code/media/
+            - ./data/btw25_290_tuebingen/logs/wahlrechner:/code/logs/
+            - ./data/btw25_290_tuebingen/migrations/wahlrechner:/code/wahlrechner/migrations
+            - ./data/btw25_290_tuebingen/stats:/code/wahlrechner/stats
+            - ./themes:/code/themes
+        env_file:
+            - ./config/config.env
+            - ./config/config_btw25_290_tuebingen.env
+        depends_on:
+            - db_btw25_290_tuebingen
+
+    db_btw25_290_tuebingen:
+        container_name: db_btw25_290_tuebingen
+        image: mariadb
+        restart: always
+        networks:
+            - db_btw25_290_tuebingen
+        env_file:
+            - ./config/config.env
+            - ./config/config_btw25_290_tuebingen.env
+        volumes:
+            - ./data/btw25_290_tuebingen/mysql:/var/lib/mysql
+
 volumes:
     caddy_data:
     caddy_config:
@@ -200,3 +748,31 @@ networks:
     # instance btw25_293_bodensee
     db_btw25_293_bodensee:
     btw25_293_bodensee:
+    db_btw25_100_leverkusen_koeln_iv:
+    btw25_100_leverkusen_koeln_iv:
+    db_btw25_258_stuttgart_i:
+    btw25_258_stuttgart_i:
+    db_btw25_259_stuttgart_ii:
+    btw25_259_stuttgart_ii:
+    db_btw25_260_boeblingen:
+    btw25_260_boeblingen:
+    db_btw25_261_esslingen:
+    btw25_261_esslingen:
+    db_btw25_263_goeppingen:
+    btw25_263_goeppingen:
+    db_btw25_264_waiblingen:
+    btw25_264_waiblingen:
+    db_btw25_265_ludwigsburg:
+    btw25_265_ludwigsburg:
+    db_btw25_268_schwaebisch_hall_hohenlohe:
+    btw25_268_schwaebisch_hall_hohenlohe:
+    db_btw25_280_calw:
+    btw25_280_calw:
+    db_btw25_281_freiburg:
+    btw25_281_freiburg:
+    db_btw25_282_loerrach_muellheim:
+    btw25_282_loerrach_muellheim:
+    db_btw25_289_reutlingen:
+    btw25_289_reutlingen:
+    db_btw25_290_tuebingen:
+    btw25_290_tuebingen:
