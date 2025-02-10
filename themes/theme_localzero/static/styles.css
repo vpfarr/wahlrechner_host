@@ -623,7 +623,7 @@ p.text-gray-600 > span.text-gray-400 {
  color:rgb(255 255 255/var(--tw-text-opacity))
 }
 .arrows {
-  color: white;
+  color: white !important;
 }
 .text-green-500 {
  --tw-text-opacity:1;
