@@ -359,7 +359,7 @@ video {
  display:none
 }
 .h-4 {
- height:1rem
+ height:0.75rem
 }
 .h-5 {
  height:1.25rem
@@ -405,7 +405,7 @@ video {
  width:1.25rem
 }
 .w-4 {
- width:1rem
+ width:0.75rem
 }
 .w-24 {
  width:6rem
