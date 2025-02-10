@@ -622,14 +622,16 @@ p.text-gray-600 > span.text-gray-400 {
  --tw-text-opacity:1;
  color:rgb(255 255 255/var(--tw-text-opacity))
 }
+.arrows {
+  color: white;
+}
 .text-green-500 {
  --tw-text-opacity:1;
  color:#A3D869;
 }
 .text-red-500 {
  --tw-text-opacity:1;
- /* color: rgb(0 20 50); */
- color: #00AED8;
+ color: #01214c;
  }
 .text-yellow-500 {
  --tw-text-opacity:1;
@@ -641,7 +643,7 @@ p.text-gray-600 > span.text-gray-400 {
 }
 .text-gray-700 {
  --tw-text-opacity:1;
- color:rgb(64 64 64/var(--tw-text-opacity));
+ color:#00AED8;
 }
 .text-gray-600 {
  --tw-text-opacity:1;
