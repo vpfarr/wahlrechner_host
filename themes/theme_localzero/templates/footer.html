@@ -1,0 +1,55 @@
+<footer>
+  <div class="footer-content" id="footer-content">
+    <div class="footer-left">
+        &nbsp;Ein Angebot von LocalZero
+    </div>
+    <div class="footer-middle">
+        Erstellt von XXX<br>wahlcheck[at]germanzero.de
+    </div>
+    <div class="footer-right">
+        Thesen wurden durch<br>LocalZero Ortsname erarbeitet&nbsp;
+    </div>
+  </div>
+  <script>
+    //Erkennenn, ob URL LocalZero.net enthält, kann nur beim einmal ausgeführt werden
+    // Hole die aktuelle URL
+    const currentUrl = window.location.href;    
+    const search_word_1 = "localzero.net"
+    const search_word_2 = "wahlcheck.localhost/"
+
+    // Überprüfe, ob "hallo" im URL-String enthalten ist
+    if (currentUrl.includes(search_word_1) || currentUrl.includes(search_word_2)) {
+        console.log("wir sind da");
+        //document.getElementById('footer-content').style.display = "none";
+    } else {
+        console.log("nicht richtig");
+    }
+  </script>
+  <script>
+    // alt
+    /*
+    //Erkennenn, ob externe iframe Einbindung oder LocalZero.net
+    function getUrlParameter(name) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(name);
+    }
+
+    console.log(getUrlParameter)
+
+    // Beispiel: URL ist www.url.com/dev_asd?extern=false
+    const externParam = getUrlParameter('extern');
+    console.log(externParam)
+    console.log(getUrlParameter('test'))
+
+    if (externParam === 'true') {
+        console.log('Extern ist true');
+        // Hier kannst du den Code für true einfügen
+    } else if (externParam === 'false') {
+        console.log('Extern ist false');
+        // Hier kannst du den Code für false einfügen
+    } else {
+        console.log('Der Parameter "extern" ist nicht gesetzt oder hat einen anderen Wert.');
+    }
+        */
+  </script>
+</footer>

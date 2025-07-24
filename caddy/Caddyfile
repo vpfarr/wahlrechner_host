@@ -67,4 +67,68 @@
         root * /www/btw25_293_bodensee
         reverse_proxy btw25_293_bodensee:8000
     }
+
+    # instance btw25_260_boeblingen
+    route /btw25_260_boeblingen* {
+        handle_path /btw25_260_boeblingen/static/* {
+            root * /www/btw25_260_boeblingen/static
+            file_server
+        }
+        
+        handle_path /btw25_260_boeblingen/media/* {
+            root * /www/btw25_260_boeblingen/media
+            file_server
+        }
+
+        root * /www/btw25_260_boeblingen
+        reverse_proxy btw25_260_boeblingen:8000
+    }
+
+    # instance btw25_261_esslingen
+        route /btw25_261_esslingen* {
+            handle_path /btw25_261_esslingen/static/* {
+                root * /www/btw25_261_esslingen/static
+                file_server
+            }
+            
+            handle_path /btw25_261_esslingen/media/* {
+                root * /www/btw25_261_esslingen/media
+                file_server
+            }
+    
+            root * /www/btw25_261_esslingen
+            reverse_proxy btw25_261_esslingen:8000
+        }
+
+    # instance btw25_265_ludwigsburg
+        route /btw25_265_ludwigsburg* {
+            handle_path /btw25_265_ludwigsburg/static/* {
+                root * /www/btw25_265_ludwigsburg/static
+                file_server
+            }
+            
+            handle_path /btw25_265_ludwigsburg/media/* {
+                root * /www/btw25_265_ludwigsburg/media
+                file_server
+            }
+    
+            root * /www/btw25_265_ludwigsburg
+            reverse_proxy btw25_265_ludwigsburg:8000
+        }
+
+            # instance btw25_265_ludwigsburg
+        route /btw25_265_ludwigsburg* {
+            handle_path /btw25_265_ludwigsburg/static/* {
+                root * /www/btw25_265_ludwigsburg/static
+                file_server
+            }
+            
+            handle_path /btw25_265_ludwigsburg/media/* {
+                root * /www/btw25_265_ludwigsburg/media
+                file_server
+            }
+    
+            root * /www/btw25_265_ludwigsburg
+            reverse_proxy btw25_265_ludwigsburg:8000
+        }
 }

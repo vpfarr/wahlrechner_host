@@ -1,0 +1,88 @@
+Änderung 0
+
+in wahlrechner/docker/wait-for-it # reinkopiert
+
+Änderung 1
+
+wahlrechner_host/themes/theme_localzero/static/styles.css
+
+
+.content .these.title {
+    ...
+     min-height: 150px;
+}
+
+css Änderungen mit 
+
+docker compose build --no-cache
+
+Änderung 2:
+
+Footer bei wahlrechner/templates/wahlrechner/base.html eingefügt
+
+<footer>
+  <div class="footer-content">
+    <div class="footer-left">
+      Ein Angebot von LocalZero
+    </div>
+    <div class="footer-right">
+      Thesen wurden durch die Wahlcheckgruppe XX erarbeitet
+    </div>
+  </div>
+</footer>
+
+Änderung 3:
+
+wahlrechner_host/themes/theme_localzero/static/styles.css
+
+footer {
+  padding: 20px 0;
+  border-top: 1px solid #eee;
+  margin-top: 50px;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-left, 
+.footer-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+footer img {
+  height: 40px;
+}
+
+Änderung 4
+
+s. wahlrechner/templates/wahlrechner/these.html neuen btn eingefügt
+
+Änderung 5
+
+background.html erstellt
+
+Änderung 6
+
+Mobiles Seitenmenu versucht einzufügen
+css bearbeitet und sidebar.html überarbeitet
+
+
+
+
+
+
+Noch zu tun:
+
+- X Info Button soll rund werden und Hintergrundinfo anzeigen sofern eine da ist. Sonst nicht anzeigen.
+- x Farben in Abhängigkeit des Abstimmens der Thesen bei der linken Seite anpassen (wurde bereits von DeepSeek gefixt)
+- x Burger Button etwas verschieben, sodass die Thesen nicht verdeckt sind
+- Burger Button verschieben wegen "Thesen x von y"
+- nicht umsetzeen:Pop-up eingerichtet
+- Hintergrundinfo nur anbieten, wenn these.explainer etwas enthält
+- Footer bei Base.html in der If Schleife einbauen (und auf zwei Funktionen künstlich strecken)
