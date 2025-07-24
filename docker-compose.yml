@@ -18,10 +18,6 @@ services:
             - btw25_91_euskirchen
             # instance btw25_293_bodensee
             - btw25_293_bodensee
-            - btw25_260_boeblingen
-            - btw25_261_esslingen
-            - btw25_265_ludwigsburg
-
         volumes:
             - ./caddy/Caddyfile:/etc/caddy/Caddyfile
             - caddy_data:/data
@@ -38,16 +34,6 @@ services:
             # instance btw25_293_bodensee
             - ./data/btw25_293_bodensee/static:/www/btw25_293_bodensee/static
             - ./data/btw25_293_bodensee/media:/www/btw25_293_bodensee/media
-            # instance btw25_260_boeblingen
-            - ./data/btw25_260_boeblingen/static:/www/btw25_260_boeblingen/static
-            - ./data/btw25_260_boeblingen/media:/www/btw25_260_boeblingen/media
-            # instance btw25_261_esslingen
-            - ./data/btw25_261_esslingen/static:/www/btw25_261_esslingen/static
-            - ./data/btw25_261_esslingen/media:/www/btw25_261_esslingen/media
-            # instance btw25_265_ludwigsburg
-            - ./data/btw25_265_ludwigsburg/static:/www/btw25_265_ludwigsburg/static
-            - ./data/btw25_265_ludwigsburg/media:/www/btw25_265_ludwigsburg/media
-
         env_file:
             - ./caddy/caddy.env
 
@@ -195,111 +181,6 @@ services:
         volumes:
             - ./data/btw25_293_bodensee/mysql:/var/lib/mysql
 
-    # instance btw25_260_boeblingen
-    btw25_260_boeblingen:
-        container_name: btw25_260_boeblingen
-        build:
-            context: ../wahlrechner
-        command: bash -c 'docker/wait-for-it/wait-for-it.sh db_btw25_260_boeblingen:3306 -t 120 -- docker/startup-production.sh'
-        restart: always
-        networks:
-            - btw25_260_boeblingen
-            - db_btw25_260_boeblingen
-        volumes:
-            - ./data/btw25_260_boeblingen/static:/code/assets/
-            - ./data/btw25_260_boeblingen/media:/code/media/
-            - ./data/btw25_260_boeblingen/logs/wahlrechner:/code/logs/
-            - ./data/btw25_260_boeblingen/migrations/wahlrechner:/code/wahlrechner/migrations
-            - ./data/btw25_260_boeblingen/stats:/code/wahlrechner/stats
-            - ./themes:/code/themes
-        env_file:
-            - ./config/config.env
-            - ./config/config_btw25_260_boeblingen.env
-        depends_on:
-            - db_btw25_260_boeblingen
-
-    db_btw25_260_boeblingen:
-        container_name: db_btw25_260_boeblingen
-        image: mariadb
-        restart: always
-        networks:
-            - db_btw25_260_boeblingen
-        env_file:
-            - ./config/config.env
-            - ./config/config_btw25_260_boeblingen.env
-        volumes:
-            - ./data/btw25_260_boeblingen/mysql:/var/lib/mysql
-
-    # instance btw25_261_esslingen
-    btw25_261_esslingen:
-        container_name: btw25_261_esslingen
-        build:
-            context: ../wahlrechner
-        command: bash -c 'docker/wait-for-it/wait-for-it.sh db_btw25_261_esslingen:3306 -t 120 -- docker/startup-production.sh'
-        restart: always
-        networks:
-            - btw25_261_esslingen
-            - db_btw25_261_esslingen
-        volumes:
-            - ./data/btw25_261_esslingen/static:/code/assets/
-            - ./data/btw25_261_esslingen/media:/code/media/
-            - ./data/btw25_261_esslingen/logs/wahlrechner:/code/logs/
-            - ./data/btw25_261_esslingen/migrations/wahlrechner:/code/wahlrechner/migrations
-            - ./data/btw25_261_esslingen/stats:/code/wahlrechner/stats
-            - ./themes:/code/themes
-        env_file:
-            - ./config/config.env
-            - ./config/config_btw25_261_esslingen.env
-        depends_on:
-            - db_btw25_261_esslingen
-
-    db_btw25_261_esslingen:
-        container_name: db_btw25_261_esslingen
-        image: mariadb
-        restart: always
-        networks:
-            - db_btw25_261_esslingen
-        env_file:
-            - ./config/config.env
-            - ./config/config_btw25_261_esslingen.env
-        volumes:
-            - ./data/btw25_261_esslingen/mysql:/var/lib/mysql
-
-    # instance btw25_265_ludwigsburg
-    btw25_265_ludwigsburg:
-        container_name: btw25_265_ludwigsburg
-        build:
-            context: ../wahlrechner
-        command: bash -c 'docker/wait-for-it/wait-for-it.sh db_btw25_265_ludwigsburg:3306 -t 120 -- docker/startup-production.sh'
-        restart: always
-        networks:
-            - btw25_265_ludwigsburg
-            - db_btw25_265_ludwigsburg
-        volumes:
-            - ./data/btw25_265_ludwigsburg/static:/code/assets/
-            - ./data/btw25_265_ludwigsburg/media:/code/media/
-            - ./data/btw25_265_ludwigsburg/logs/wahlrechner:/code/logs/
-            - ./data/btw25_265_ludwigsburg/migrations/wahlrechner:/code/wahlrechner/migrations
-            - ./data/btw25_265_ludwigsburg/stats:/code/wahlrechner/stats
-            - ./themes:/code/themes
-        env_file:
-            - ./config/config.env
-            - ./config/config_btw25_265_ludwigsburg.env
-        depends_on:
-            - db_btw25_265_ludwigsburg
-
-    db_btw25_265_ludwigsburg:
-        container_name: db_btw25_265_ludwigsburg
-        image: mariadb
-        restart: always
-        networks:
-            - db_btw25_265_ludwigsburg
-        env_file:
-            - ./config/config.env
-            - ./config/config_btw25_265_ludwigsburg.env
-        volumes:
-            - ./data/btw25_265_ludwigsburg/mysql:/var/lib/mysql
-
 volumes:
     caddy_data:
     caddy_config:
@@ -319,10 +200,3 @@ networks:
     # instance btw25_293_bodensee
     db_btw25_293_bodensee:
     btw25_293_bodensee:
-    # instance btw25_260_boeblingen
-    db_btw25_260_boeblingen:
-    btw25_260_boeblingen:
-    db_btw25_261_esslingen:
-    btw25_261_esslingen:
-    db_btw25_265_ludwigsburg:
-    btw25_265_ludwigsburg:

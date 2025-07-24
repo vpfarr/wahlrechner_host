@@ -1,9 +1,7 @@
 /* path/to/css */
 
 /*! tailwindcss v3.0.24 | MIT License | https://tailwindcss.com*/*,
-/*! Carlos 2024-07-23 10:15:00 */
-/*! Carlos 2025-01-23 00:30:00 */
-/*! Test */
+/*! Carlos 2025-02-10 18:30:00 */
 /*! Adapted for LocalZero Theme by Carlos, Valentin, Leon. */
 :after,
 :before {
@@ -262,7 +260,7 @@ video {
 }
 @media (min-width:768px) {
  .container {
-  max-width:768px;
+  max-width:768px
  }
 }
 @media (min-width:1024px) {
@@ -279,15 +277,6 @@ video {
  .container {
   max-width:1536px
  }
-}
-.arrows {
-    /* color: white !important;*/
-}
-.sidebar-disagree {
-    color: #01214c;
-}
-.sidebar-neutral {
-    color: #00AED8;
 }
 .static {
  position:static
@@ -369,7 +358,7 @@ video {
  display:none
 }
 .h-4 {
- height:1rem
+ height:0.75rem
 }
 .h-5 {
  height:1.25rem
@@ -415,7 +404,7 @@ video {
  width:1.25rem
 }
 .w-4 {
- width:1rem
+ width:0.75rem
 }
 .w-24 {
  width:6rem
@@ -481,10 +470,7 @@ video {
 }
 .border-l-8 {
  /*! border-left-width:12px; */
- border-left-width:7px;
-}
-.border-empty {
- border-left-width:2px;
+ border-left-width:0px;
 }
 .border-gray-300 {
  --tw-border-opacity:1;
@@ -635,14 +621,16 @@ p.text-gray-600 > span.text-gray-400 {
  --tw-text-opacity:1;
  color:rgb(255 255 255/var(--tw-text-opacity))
 }
+.arrows {
+  color: white !important;
+}
 .text-green-500 {
  --tw-text-opacity:1;
  color:#A3D869;
 }
 .text-red-500 {
  --tw-text-opacity:1;
- /* color: rgb(0 20 50); */
- color: #00AED8;
+ color: #01214c;
  }
 .text-yellow-500 {
  --tw-text-opacity:1;
@@ -654,7 +642,7 @@ p.text-gray-600 > span.text-gray-400 {
 }
 .text-gray-700 {
  --tw-text-opacity:1;
- color: #404040;
+ color:#00AED8;
 }
 .text-gray-600 {
  --tw-text-opacity:1;
@@ -790,7 +778,7 @@ p.text-gray-600 > span.text-gray-400 {
  font-weight:600;
  --tw-text-opacity:1;
  color:rgb(0 20 50);
- min-height: 150px;
+ min-height: 120px;
 }
 .content .these.clue {
  margin-bottom:.25rem;
@@ -887,6 +875,11 @@ p.text-gray-600 > span.text-gray-400 {
  background-color:#8acd41;
  /* color: #FFC80C; */
 }
+@media (min-width:1024px) {
+ .btn-container .btn.btn-agree {
+  width:12rem
+ }
+}
 .btn-container .btn.btn-neutral {
  --tw-bg-opacity:1;
  background-color:#00AED8;
@@ -898,7 +891,11 @@ p.text-gray-600 > span.text-gray-400 {
  --tw-bg-opacity:1;
  background-color:#008eb1;
 }
-
+@media (min-width:1024px) {
+ .btn-container .btn.btn-neutral {
+  width:7rem
+ }
+}
 .btn-container .btn.btn-disagree {
  --tw-bg-opacity:1;
  background-color:#01214c;
@@ -910,38 +907,11 @@ p.text-gray-600 > span.text-gray-400 {
  --tw-bg-opacity:1;
  background-color:#000000;
 }
-.btn-container .btn.btn-background {
- --tw-bg-opacity:1;
- background-color:white;
- --tw-ring-opacity:1;
- --tw-ring-color:transparent;
- color: black;
-}
-.btn-container .btn.btn-background:focus,
-.btn-container .btn.btn-background:hover {
- --tw-bg-opacity:1;
- background-color: #dedede;
-}
-/*lz_a_1*/
 @media (min-width:1024px) {
  .btn-container .btn.btn-disagree {
   width:12rem
  }
-  .btn-container .btn.btn-neutral {
-  width:7rem
- }
-  .btn-container .btn.btn-agree {
-  width:12rem
- }
-  .btn-container .btn.btn-background {
-  width:7rem
- }
 }
-
-#background-info {
-    color: black;
-}
-
 .btn-row {
  margin-top:1.5rem;
  display:flex;
@@ -1375,186 +1345,4 @@ input:checked+svg {
  .\32xl\:p-28 {
   padding:7rem
  }
-}
-
-.footer_padding {
-    padding-left: 5.5rem;
-    /*margin-top: 0rem;*/
-}
-
-footer {
-  width: 100%;
-  padding: 20px 0;
-  border-top: 1px solid #eee;
-  margin-top: 30px;
-}
-
-.footer-content {
-  display: flex;
-  justify-content: space-between;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 1rem;
-}
-
-.footer-left, .footer-middle, .footer-right {
-  display: flex;
-  align-items: center;
-  text-align: center;
-  gap: 10px;
-  padding-top: 2rem;
-}
-
-footer img {
-  height: 40px;
-}
-
-/* .modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-}
-
- .modal-content {
-    background: white;
-    border-radius: 0.5rem;
-    padding: 1.5rem;
-    max-width: 600px;
-    width: 90%;
-    max-height: 80vh;
-    overflow-y: auto;
-}
-
-.modal-close {
-    font-size: 2rem;
-    top: -10px;
-    position: relative;
-}
-
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0,0,0,0.5);
-    z-index: 1000;
-    justify-content: center;
-    align-items: center;
-}
-
-.modal-content {
-    background: white;
-    border-radius: 0.5rem;
-    padding: 1.5rem;
-    max-width: 600px;
-    width: 90%;
-    max-height: 80vh;
-    overflow-y: auto;
-} */
- .thesen-counter-container {
-    justify-content: space-between; /* Verteilt die Kinder mit maximalem Abstand */
- }
-
-/* .btn-background.active {
-    background-color: greenyellow;
-}*/
-
-/* Mobile Menu Styling */
-.mobile-menu-container {
-    position: fixed;
-    top: 10px;
-    left: 10px;
-    z-index: 1000;
-}
-
-.burger-button {
-    background: rgba(255, 255, 255, 0.8);
-    border-radius: 4px;
-    padding: 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-    cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-}
-
-.burger-icon {
-    display: block;
-    width: 24px;
-    height: 2px;
-    background-color: #333;
-}
-
-.dark .burger-icon {
-    background-color: #f3f3f3;
-}
-
-/* Mobile Menu Container */
-.thesen-container {
-    transition: transform 0.3s ease;
-}
-
-#footer-content {
-    display: block;
-}
-
-/* Responsive Behavior */
-@media (max-width:768px) {
-    .thesen-container {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 80%;
-        max-width: 7648px;
-        height: 100%;
-        background: white;
-        z-index: 999;
-        padding: 20px;
-        transform: translateX(-100%);
-        overflow-y: auto;
-        box-shadow: 2px 0 10px rgba(0,0,0,0.1);
-    }
-    
-    .thesen-container.active {
-        transform: translateX(0);
-    }
-    
-    .dark .thesen-container {
-        background: #1a202c;
-    }
-
-    .sidebar {
-        position: relative;
-        top: 30px; /* Verschiebt die Thesentitel nach unten */
-        margin-top: 10px; /* Zusätzlicher Abstand */
-    }
-
-}
-
-@media (max-width: 768px) {
-  .footer-content {
-    flex-direction: column;
-    gap: 1.5rem;
-    text-align: center;
-  }
-  
-  .footer-left, 
-  .footer-middle, 
-  .footer-right {
-    justify-content: center;
-  }
-
-  .footer_padding {
-    margin-top: -3rem;
-    padding-left: 0rem;
-}
 }
